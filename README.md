@@ -1,13 +1,28 @@
-# Library ChatBot Project
+# Library ChatBot — Graph-RAG Conversational Agent for Book Discovery
 
-This project includes a Library ChatBot implemented using Streamlit, designed to interactively help users find books and provide information about them. The backend utilizes a Neo4j database and incorporates OpenAI's language model for generating responses based on book data.
+**Library ChatBot** is an AI-powered librarian assistant that answers questions strictly based on data stored in a **Neo4j knowledge graph**.  
+It combines **ReAct-style agent reasoning**, **semantic vector search**, **Cypher-based fact retrieval**, and a clean **Streamlit conversational UI** to help users explore books, authors, genres, and plots.
 
-## Features
+This project demonstrates a production-grade architecture for building **domain-restricted, hallucination-resistant** AI assistants.
 
-- **Interactive Chat Interface**: Engage with the chatbot directly through a user-friendly interface.
-- **Advanced Query Handling**: Utilizes natural language processing to interpret and respond to user queries about book plots, genres, and authors.
-- **Neo4j Database Integration**: Leverages a graph database to retrieve book information efficiently.
-- **Embedding-Based Search**: Uses OpenAI's language model embeddings to enhance search capabilities within the Neo4j database.
+---
+
+## ✨ Key Features
+
+### 🔹 Domain-Bound Conversational Agent
+The chatbot answers **only** using information stored in Neo4j.  
+It refuses out-of-domain questions and never relies on pre-trained model knowledge.
+
+### 🔹 ReAct Agent with Multiple Tools
+The system uses LangChain’s ReAct agent equipped with three specialized tools:
+
+| Tool | Description |
+|------|-------------|
+| **General Chat** | Handles lightweight book conversations when no structured search is required. |
+| **Books Plot Search** | Vector-based plot search using embeddings to identify books by description. |
+| **Book Information (Cypher)** | Detailed fact lookup using Cypher queries (author, genre, year, ratings, recommendations). |
+
+The agent chooses when to invoke a tool using the ReAct flow (`Thought → Action → Observation → Final Answer`).
 
 ## Technology Stack
 
